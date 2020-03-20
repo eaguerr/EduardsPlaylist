@@ -46,7 +46,7 @@ object FoodRepository {
 
   fun loadFoods(context: Context) {
     val gson = Gson()
-    val json = loadJSONFromAsset("foods.json", context)
+    val json = loadJSONFromAsset("songs.json", context)
     val listType = object : TypeToken<List<Food>>() {}.type
     foods = gson.fromJson(json, listType)
     foods

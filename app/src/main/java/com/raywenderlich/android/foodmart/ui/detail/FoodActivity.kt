@@ -36,8 +36,10 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.widget.SeekBar
 import android.widget.Toast
 import com.raywenderlich.android.foodmart.R
 import com.raywenderlich.android.foodmart.app.toast
@@ -49,8 +51,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class FoodActivity : AppCompatActivity(), FoodContract.View {
-
-    lateinit var mediaPlayer: MediaPlayer
 
     override lateinit var presenter: FoodContract.Presenter
 
@@ -64,6 +64,10 @@ class FoodActivity : AppCompatActivity(), FoodContract.View {
         }
     }
 
+    lateinit var mediaPlayer: MediaPlayer
+    private lateinit var runnable:Runnable
+    private var handler: Handler = Handler()
+    private var pause:Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food)
@@ -143,22 +147,65 @@ class FoodActivity : AppCompatActivity(), FoodContract.View {
                     mediaPlayer.start()
                 }
                 Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()
+                initializeSeekBar()
+                fab.isEnabled = false
+                fabStop.isEnabled = true
+
+                mediaPlayer.setOnCompletionListener {
+                    fab.isEnabled = true
+                    fabStop.isEnabled = false
+                    Toast.makeText(this,"end",Toast.LENGTH_SHORT).show()
+                }
+
             }
         }
 
-        fabStop.setOnClickListener {
-            if (mediaPlayer.isPlaying) {
+        fabStop.setOnClickListener{
+            if(mediaPlayer.isPlaying || pause.equals(true)){
+                pause = false
+                seek_bar.setProgress(0)
                 mediaPlayer.stop()
-                Toast.makeText(this, "media has been stopped", Toast.LENGTH_SHORT).show()
+                mediaPlayer.reset()
+                mediaPlayer.release()
+                handler.removeCallbacks(runnable)
+
+                fab.isEnabled = true
+                fabStop.isEnabled = false
+                tv_pass.text = ""
+                tv_due.text = ""
+                Toast.makeText(this,"media stop",Toast.LENGTH_SHORT).show()
             }
         }
 
-        fabPause.setOnClickListener {
-            if (mediaPlayer.isPlaying) {
-                mediaPlayer.pause()
-                Toast.makeText(this, "media has been pause", Toast.LENGTH_SHORT).show()
+        seek_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
+                if (b) {
+                    mediaPlayer.seekTo(i * 1000)
+                }
             }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+            }
+        })
+
+    }
+
+    private fun initializeSeekBar() {
+        seek_bar.max = mediaPlayer.seconds
+
+        runnable = Runnable {
+            seek_bar.progress = mediaPlayer.currentSeconds
+
+            tv_pass.text = "${mediaPlayer.currentSeconds} sec"
+            val diff = mediaPlayer.seconds - mediaPlayer.currentSeconds
+            tv_due.text = "$diff sec"
+
+            handler.postDelayed(runnable, 1000)
         }
+        handler.postDelayed(runnable, 1000)
     }
 
     override fun onResume() {
@@ -180,3 +227,13 @@ class FoodActivity : AppCompatActivity(), FoodContract.View {
         toast(if (isInCart) getString(R.string.added_to_cart) else getString(R.string.removed_from_cart))
     }
 }
+
+val MediaPlayer.seconds:Int
+    get() {
+        return this.duration / 1000
+    }
+// Creating an extension property to get media player current position in seconds
+val MediaPlayer.currentSeconds:Int
+    get() {
+        return this.currentPosition/1000
+    }

@@ -1,7 +1,7 @@
 <resources>
   <string name="app_name">Eduards Playlist</string>
   <string name="content_description_food_image">Food Item</string>
-  <string name="more_info">More Info</string>
+  <string name="more_info">More On This Artist</string>
   <string name="add_button">Add button</string>
   <string name="cart">Cart</string>
   <string name="cart_icon">Cart Icon</string>

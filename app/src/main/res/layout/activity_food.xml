@@ -123,30 +123,52 @@
     android:id="@+id/fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/padding_standard"
-      android:layout_marginEnd="@dimen/padding_standard"
+    android:layout_marginStart="@dimen/padding_half"
+      android:layout_marginEnd="@dimen/padding_half"
     android:src="@drawable/play128"
     app:layout_anchor="@id/appBarLayout"
     app:layout_anchorGravity="bottom|left" />
 
-  <android.support.design.widget.FloatingActionButton
-      android:id="@+id/fabPause"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="@dimen/padding_standard"
-      android:layout_marginEnd="@dimen/padding_standard"
-      android:src="@drawable/pause128"
-      app:layout_anchor="@id/appBarLayout"
-      app:layout_anchorGravity="bottom|center" />
+
 
   <android.support.design.widget.FloatingActionButton
     android:id="@+id/fabStop"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="@dimen/padding_standard"
-    android:layout_marginEnd="@dimen/padding_standard"
+      android:layout_marginStart="@dimen/padding_half"
+    android:layout_marginEnd="@dimen/padding_half"
     android:src="@drawable/stop128"
     app:layout_anchor="@id/appBarLayout"
     app:layout_anchorGravity="bottom|right" />
+
+  <RelativeLayout
+      android:id="@+id/seek_bar_relativelay"
+      android:layout_width="290dp"
+      android:layout_marginStart="@dimen/padding_standard"
+      android:layout_marginEnd="@dimen/padding_standard"
+      android:layout_height="wrap_content"
+      app:layout_anchor="@id/appBarLayout"
+      app:layout_anchorGravity="bottom|center"
+      >
+
+    <TextView
+        android:id="@+id/tv_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_due"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+
+    <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_pass"
+        android:saveEnabled="false" />
+  </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

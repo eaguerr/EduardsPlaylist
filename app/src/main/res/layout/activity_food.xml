@@ -82,6 +82,7 @@
         app:cardUseCompatPadding="true">
 
         <LinearLayout
+            android:id="@+id/textInfo"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical">
@@ -110,6 +111,15 @@
             android:layout_margin="@dimen/padding_standard"
             android:text="@string/more_info"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <TextView
+                android:id="@+id/youtubeTextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/padding_standard"
+                android:text="@string/artist_youtube"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         </LinearLayout>
 

@@ -36,7 +36,7 @@ import com.raywenderlich.android.foodmart.ui.base.BasePresenter
 import com.raywenderlich.android.foodmart.ui.base.BaseView
 
 
-interface FoodContract {
+interface SongsContract {
   interface View : BaseView<Presenter>
 
   interface Presenter : BasePresenter {

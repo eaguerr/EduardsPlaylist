@@ -39,8 +39,8 @@ import com.raywenderlich.android.foodmart.ui.categories.CategoriesContract
 import com.raywenderlich.android.foodmart.ui.categories.CategoriesPresenter
 import com.raywenderlich.android.foodmart.ui.categories.CategoryContract
 import com.raywenderlich.android.foodmart.ui.categories.CategoryPresenter
-import com.raywenderlich.android.foodmart.ui.detail.FoodContract
-import com.raywenderlich.android.foodmart.ui.detail.FoodPresenter
+import com.raywenderlich.android.foodmart.ui.detail.SongsContract
+import com.raywenderlich.android.foodmart.ui.detail.SongsPresenter
 import com.raywenderlich.android.foodmart.ui.items.ItemsContract
 import com.raywenderlich.android.foodmart.ui.items.ItemsPresenter
 
@@ -54,8 +54,8 @@ object Injection {
   fun provideItemsPresenter(itemsView: ItemsContract.View): ItemsContract.Presenter =
       ItemsPresenter(provideFoodRepository(), provideCart(), itemsView)
 
-  fun provideFoodPresenter(foodView: FoodContract.View): FoodContract.Presenter =
-      FoodPresenter(provideFoodRepository(), provideCart(), foodView)
+    fun provideFoodPresenter(foodView: SongsContract.View): SongsContract.Presenter =
+            SongsPresenter(provideFoodRepository(), provideCart(), foodView)
 
   fun provideCartPresenter(cartView: CartContract.View): CartContract.Presenter =
       CartPresenter(provideCart(), cartView)

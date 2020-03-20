@@ -50,9 +50,9 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class FoodActivity : AppCompatActivity(), FoodContract.View {
+class FoodActivity : AppCompatActivity(), SongsContract.View {
 
-    override lateinit var presenter: FoodContract.Presenter
+    override lateinit var presenter: SongsContract.Presenter
 
     companion object {
         private const val EXTRA_FOOD_ID = "place_id"
@@ -87,12 +87,15 @@ class FoodActivity : AppCompatActivity(), FoodContract.View {
             foodDescription.text = songs.description
             fab.setImageResource(if (songs.isInCart) R.drawable.play128 else R.drawable.ic_add)
             moreInfo.setOnClickListener {
-//        if (mediaPlayer.isPlaying) {
-//          mediaPlayer.stop()
-//        }
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(songs.link))
                 startActivity(browserIntent)
             }
+
+            youtubeTextview.setOnClickListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(songs.youtubeLink))
+                startActivity(browserIntent)
+            }
+
             fab.setOnClickListener {
                 if (songs.id == 1) {
                     mediaPlayer = MediaPlayer.create(applicationContext, R.raw.hold_the_line)
@@ -163,7 +166,7 @@ class FoodActivity : AppCompatActivity(), FoodContract.View {
         fabStop.setOnClickListener{
             if(mediaPlayer.isPlaying || pause.equals(true)){
                 pause = false
-                seek_bar.setProgress(0)
+                seek_bar.progress = 0
                 mediaPlayer.stop()
                 mediaPlayer.reset()
                 mediaPlayer.release()

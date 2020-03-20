@@ -36,7 +36,7 @@ import com.raywenderlich.android.foodmart.model.Food
 import com.raywenderlich.android.foodmart.model.FoodRepository
 
 
-class FoodPresenter(private val repository: FoodRepository, private val cart: Cart, private val foodView: FoodContract.View) : FoodContract.Presenter {
+class SongsPresenter(private val repository: FoodRepository, private val cart: Cart, private val foodView: SongsContract.View) : SongsContract.Presenter {
 
   private var food: Food? = null
 

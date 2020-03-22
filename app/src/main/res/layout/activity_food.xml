@@ -109,7 +109,7 @@
               android:layout_height="40dp"
               android:background="@drawable/ic_clear_white"
               android:scaleType="fitXY"
-              android:src="@drawable/spotifylogo1"
+              android:src="@drawable/spotifylogo"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/padding_standard"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

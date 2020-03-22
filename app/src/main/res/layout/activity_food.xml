@@ -44,8 +44,8 @@
         <ImageView
           android:id="@+id/foodImage"
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_gravity="center"
+            android:layout_height="200dp"
+            android:layout_gravity="top"
           android:contentDescription="@string/content_description_food_image"
           android:fitsSystemWindows="true"
           android:scaleType="fitXY"
@@ -103,22 +103,26 @@
             android:layout_margin="@dimen/padding_standard"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-          <TextView
+          <ImageButton
             android:id="@+id/moreInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+              android:layout_width="120dp"
+              android:layout_height="40dp"
+              android:background="@drawable/ic_clear_white"
+              android:scaleType="fitXY"
+              android:src="@drawable/spotifylogo1"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/padding_standard"
-            android:text="@string/more_info"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-            <TextView
+          <ImageButton
                 android:id="@+id/youtubeTextview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+              android:layout_width="120dp"
+              android:layout_height="64dp"
+              android:background="@drawable/ic_clear_white"
+              android:scaleType="fitXY"
+              android:src="@drawable/youtube"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/padding_standard"
-                android:text="@string/artist_youtube"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         </LinearLayout>
@@ -157,17 +161,19 @@
       android:layout_marginStart="@dimen/padding_standard"
       android:layout_marginEnd="@dimen/padding_standard"
       android:layout_height="wrap_content"
-      app:layout_anchor="@id/appBarLayout"
+      app:layout_anchor="@id/foodImage"
       app:layout_anchorGravity="bottom|center"
       >
 
     <TextView
+        android:paddingTop="30dp"
         android:id="@+id/tv_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/tv_due"
+        android:paddingTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

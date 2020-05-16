@@ -85,7 +85,6 @@ class FoodActivity : AppCompatActivity(), SongsContract.View {
             collapsingToolbar.setExpandedTitleColor(ContextCompat.getColor(this, android.R.color.transparent))
             foodName.text = songs.name
             foodDescription.text = songs.description
-            fab.setImageResource(if (songs.isInCart) R.drawable.play128 else R.drawable.ic_add)
             moreInfo.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(songs.link))
                 startActivity(browserIntent)
@@ -226,7 +225,6 @@ class FoodActivity : AppCompatActivity(), SongsContract.View {
     fun onCartEvent(event: CartEvent) {
         val food = presenter.getFood(intent.extras.getInt(EXTRA_FOOD_ID))
         val isInCart = food?.isInCart ?: false
-        fab.setImageResource(if (isInCart) R.drawable.play128 else R.drawable.ic_add)
         toast(if (isInCart) getString(R.string.added_to_cart) else getString(R.string.removed_from_cart))
     }
 }

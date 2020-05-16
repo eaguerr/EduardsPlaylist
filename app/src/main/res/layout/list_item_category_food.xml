@@ -33,4 +33,17 @@
     app:layout_constraintTop_toTopOf="parent"
     tools:text="Food Name" />
 
+  <ImageView
+      android:id="@+id/favoriteButton"
+      android:layout_width="@dimen/add_button_size"
+      android:layout_height="@dimen/add_button_size"
+      android:layout_marginEnd="@dimen/padding_standard"
+      android:contentDescription="@string/add_button"
+      android:scaleType="center"
+      android:src="@drawable/ic_favorite_border"
+      android:tint="@color/colorPrimaryDark"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

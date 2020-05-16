@@ -34,6 +34,7 @@ package com.raywenderlich.android.foodmart.ui.items
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.raywenderlich.android.foodmart.R
 import com.raywenderlich.android.foodmart.app.inflate
 import com.raywenderlich.android.foodmart.model.Food
@@ -71,6 +72,14 @@ class ItemsAdapter(private val items: MutableList<Food>, private val listener: I
       val context = itemView.context
       itemView.foodImage.setImageResource(context.resources.getIdentifier(item.thumbnail, null, context.packageName))
       itemView.name.text = item.name
+      itemView.favoriteButton.setImageResource(if (item.isInCart) R.drawable.ic_favorite else R.drawable.ic_favorite_border)
+      itemView.favoriteButton.setOnClickListener {
+        if (item.isInCart) {
+          listener.removeItem(item, itemView.favoriteButton)
+        } else {
+          listener.addItem(item, itemView.foodImage, itemView.favoriteButton)
+        }
+      }
     }
 
     override fun onClick(view: View) {
@@ -80,7 +89,7 @@ class ItemsAdapter(private val items: MutableList<Food>, private val listener: I
   }
 
   interface ItemsAdapterListener {
-    fun removeItem(item: Food)
-    fun addItem(item: Food)
+    fun removeItem(item: Food, favoriteButton: ImageView)
+    fun addItem(item: Food, foodImage: ImageView, favoriteButton: ImageView)
   }
 }

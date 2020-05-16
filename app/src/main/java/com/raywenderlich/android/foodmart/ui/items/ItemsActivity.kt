@@ -38,6 +38,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import com.raywenderlich.android.foodmart.R
 import com.raywenderlich.android.foodmart.model.Food
@@ -130,11 +131,11 @@ class ItemsActivity : AppCompatActivity(), ItemsContract.View, ItemsAdapter.Item
     adapter.updateItems(items)
   }
 
-  override fun removeItem(item: Food) {
+  override fun removeItem(item: Food, favoriteButton: ImageView) {
     presenter.removeItem(item)
   }
 
-  override fun addItem(item: Food) {
+  override fun addItem(item: Food, foodImage: ImageView, favoriteButton: ImageView) {
     presenter.addItem(item)
   }
 

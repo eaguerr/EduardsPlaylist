@@ -89,28 +89,14 @@ class CartActivity : AppCompatActivity(), CartContract.View, CartAdapter.CartAda
     if (items.isEmpty()) {
       emptyLabel.visibility = View.VISIBLE
       cartRecyclerView.visibility = View.INVISIBLE
-      checkoutButton.isEnabled = false
     } else {
       emptyLabel.visibility = View.INVISIBLE
       cartRecyclerView.visibility = View.VISIBLE
-      checkoutButton.isEnabled = true
     }
   }
 
   override fun removeItem(item: Food) {
     presenter.removeItem(item)
-  }
-
-  @Suppress("UNUSED_PARAMETER")
-  fun showPaymentMethods(view: View) {
-    checkoutButton.visibility = View.INVISIBLE
-    paymentMethodContainer.visibility = View.VISIBLE
-  }
-
-  @Suppress("UNUSED_PARAMETER")
-  fun closePaymentMethods(view: View) {
-    checkoutButton.visibility = View.VISIBLE
-    paymentMethodContainer.visibility = View.INVISIBLE
   }
 
   @Suppress("UNUSED_PARAMETER")

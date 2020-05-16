@@ -10,7 +10,7 @@
     android:id="@+id/foodImage"
     android:layout_width="@dimen/list_item_height"
     android:layout_height="@dimen/list_item_height"
-    android:layout_marginStart="@dimen/padding_standard"
+    android:layout_marginStart="30dp"
     android:contentDescription="@string/content_description_food_image"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -32,5 +32,17 @@
     app:layout_constraintStart_toEndOf="@+id/foodImage"
     app:layout_constraintTop_toTopOf="parent"
     tools:text="Food Name" />
+
+  <ImageView
+      android:id="@+id/favoriteButton"
+      android:layout_width="@dimen/add_button_size"
+      android:layout_height="@dimen/add_button_size"
+      android:layout_marginEnd="@dimen/padding_standard"
+      android:contentDescription="@string/add_button"
+      android:scaleType="center"
+      android:src="@drawable/ic_favorite_border"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

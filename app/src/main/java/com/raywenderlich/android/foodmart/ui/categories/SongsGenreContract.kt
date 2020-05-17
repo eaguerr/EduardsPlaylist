@@ -29,20 +29,17 @@
  *
  */
 
-package com.raywenderlich.android.foodmart.ui
+package com.raywenderlich.android.foodmart.ui.categories
 
-import android.content.Intent
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.raywenderlich.android.foodmart.ui.songs.SongsActivity
+import com.raywenderlich.android.foodmart.ui.base.BasePresenter
+import com.raywenderlich.android.foodmart.ui.base.BaseView
 
-class SplashActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+interface SongsGenreContract {
 
-    val intent = Intent(this, SongsActivity::class.java)
-    startActivity(intent)
-    finish()
+  interface View : BaseView<SongsGenreContract.Presenter> {
+    fun showCategories(categories: List<String>)
   }
+
+  interface Presenter : BasePresenter
 }

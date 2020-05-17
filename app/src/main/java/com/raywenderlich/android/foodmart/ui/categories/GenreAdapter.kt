@@ -29,20 +29,39 @@
  *
  */
 
-package com.raywenderlich.android.foodmart.ui
+package com.raywenderlich.android.foodmart.ui.categories
 
-import android.content.Intent
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.raywenderlich.android.foodmart.ui.songs.SongsActivity
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.view.ViewGroup
+import com.raywenderlich.android.foodmart.R
+import com.raywenderlich.android.foodmart.app.inflate
+import com.raywenderlich.android.foodmart.model.Song
+import kotlinx.android.synthetic.main.list_item_food.view.*
 
-class SplashActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+class GenreAdapter(private val items: MutableList<Song>) : RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
 
-    val intent = Intent(this, SongsActivity::class.java)
-    startActivity(intent)
-    finish()
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+    ViewHolder(parent.inflate(R.layout.list_item_category_food))
+
+  override fun onBindViewHolder(holder: GenreAdapter.ViewHolder, position: Int) {
+    holder.bind(items[position])
+  }
+
+  override fun getItemCount() = items.size
+
+  fun updateItems(items: List<Song>) {
+    this.items.clear()
+    this.items.addAll(items)
+    notifyDataSetChanged()
+  }
+
+  class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun bind(item: Song) {
+      val context = itemView.context
+      itemView.foodImage.setImageResource(context.resources.getIdentifier(item.thumbnail, null, context.packageName))
+      itemView.name.text = item.name
+    }
   }
 }

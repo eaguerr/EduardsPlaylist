@@ -3,7 +3,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="com.raywenderlich.android.foodmart.ui.cart.CartActivity">
+  tools:context="com.raywenderlich.android.foodmart.ui.cart.FavoriteScreenActivity">
 
   <TextView
     android:id="@+id/emptyLabel"

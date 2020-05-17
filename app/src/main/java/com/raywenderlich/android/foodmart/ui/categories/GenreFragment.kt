@@ -29,20 +29,63 @@
  *
  */
 
-package com.raywenderlich.android.foodmart.ui
+package com.raywenderlich.android.foodmart.ui.categories
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.raywenderlich.android.foodmart.ui.songs.SongsActivity
+import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.raywenderlich.android.foodmart.R
+import com.raywenderlich.android.foodmart.model.Song
+import com.raywenderlich.android.foodmart.ui.Injection
+import kotlinx.android.synthetic.main.activity_items.*
 
-class SplashActivity : AppCompatActivity() {
 
+class GenreFragment : Fragment(), GenreContract.View {
+
+  override lateinit var presenter: GenreContract.Presenter
+  private val adapter = GenreAdapter(mutableListOf())
+
+  companion object {
+    private const val ARG_CATEGORY = "ARG_CATEGORY"
+
+    fun newInstance(category: String): GenreFragment {
+      val args = Bundle()
+      args.putString(ARG_CATEGORY, category)
+
+      val fragment = GenreFragment()
+      fragment.arguments = args
+      return fragment
+    }
+  }
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val intent = Intent(this, SongsActivity::class.java)
-    startActivity(intent)
-    finish()
+    presenter = Injection.provideCategoryPresenter(this)
+  }
+
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+    inflater.inflate(R.layout.fragment_category, container, false)
+
+  override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    setupRecyclerView()
+  }
+
+  private fun setupRecyclerView() {
+    itemsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+    itemsRecyclerView.adapter = adapter
+  }
+
+  override fun onResume() {
+    super.onResume()
+    presenter.loadCategory(arguments.getString(ARG_CATEGORY))
+  }
+
+  override fun showItems(items: List<Song>) {
+    adapter.updateItems(items)
   }
 }

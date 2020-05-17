@@ -29,20 +29,39 @@
  *
  */
 
-package com.raywenderlich.android.foodmart.ui
+package com.raywenderlich.android.foodmart.ui.songs
 
-import android.content.Intent
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.raywenderlich.android.foodmart.ui.songs.SongsActivity
+import com.raywenderlich.android.foodmart.model.FavoriteScreen
+import com.raywenderlich.android.foodmart.model.Song
+import com.raywenderlich.android.foodmart.model.SongsRepository
 
-class SplashActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+class SongsPresenter(private val repository: SongsRepository, private val cart: FavoriteScreen, private val songsView: SongsContract.View)
+  : SongsContract.Presenter {
 
-    val intent = Intent(this, SongsActivity::class.java)
-    startActivity(intent)
-    finish()
+  override fun start() {
+    loadFoods()
+  }
+
+  private fun loadFoods() {
+    songsView.showItems(repository.getFoods())
+  }
+
+  override fun cartSize() = cart.cartSize()
+
+  override fun addAllToCart() {
+    cart.addAllToCart()
+  }
+
+  override fun clearCart() {
+    cart.clearCart()
+  }
+
+  override fun removeItem(item: Song) {
+    cart.removeItem(item)
+  }
+
+  override fun addItem(item: Song) {
+    cart.addItem(item)
   }
 }

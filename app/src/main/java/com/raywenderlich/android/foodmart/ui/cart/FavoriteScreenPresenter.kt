@@ -29,20 +29,22 @@
  *
  */
 
-package com.raywenderlich.android.foodmart.ui
+package com.raywenderlich.android.foodmart.ui.cart
 
-import android.content.Intent
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.raywenderlich.android.foodmart.ui.songs.SongsActivity
+import com.raywenderlich.android.foodmart.model.FavoriteScreen
+import com.raywenderlich.android.foodmart.model.Song
 
-class SplashActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+class FavoriteScreenPresenter(private val cart: FavoriteScreen, private val favoriteScreenView: FavoriteScreenContract.View) : FavoriteScreenContract.Presenter {
+  override fun start() {
+    loadCart(true)
+  }
 
-    val intent = Intent(this, SongsActivity::class.java)
-    startActivity(intent)
-    finish()
+  override fun loadCart(notify: Boolean) {
+    favoriteScreenView.showCart(cart.getCartItems(), notify)
+  }
+
+  override fun removeItem(item: Song) {
+    cart.removeItem(item)
   }
 }

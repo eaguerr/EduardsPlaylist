@@ -31,38 +31,38 @@
 
 package com.raywenderlich.android.foodmart.ui
 
-import com.raywenderlich.android.foodmart.model.Cart
-import com.raywenderlich.android.foodmart.model.FoodRepository
-import com.raywenderlich.android.foodmart.ui.cart.CartContract
-import com.raywenderlich.android.foodmart.ui.cart.CartPresenter
-import com.raywenderlich.android.foodmart.ui.categories.CategoriesContract
-import com.raywenderlich.android.foodmart.ui.categories.CategoriesPresenter
-import com.raywenderlich.android.foodmart.ui.categories.CategoryContract
-import com.raywenderlich.android.foodmart.ui.categories.CategoryPresenter
-import com.raywenderlich.android.foodmart.ui.detail.SongsContract
-import com.raywenderlich.android.foodmart.ui.detail.SongsPresenter
-import com.raywenderlich.android.foodmart.ui.items.ItemsContract
-import com.raywenderlich.android.foodmart.ui.items.ItemsPresenter
+import com.raywenderlich.android.foodmart.model.FavoriteScreen
+import com.raywenderlich.android.foodmart.model.SongsRepository
+import com.raywenderlich.android.foodmart.ui.cart.FavoriteScreenContract
+import com.raywenderlich.android.foodmart.ui.cart.FavoriteScreenPresenter
+import com.raywenderlich.android.foodmart.ui.categories.SongsGenreContract
+import com.raywenderlich.android.foodmart.ui.categories.SongsGenrePresenter
+import com.raywenderlich.android.foodmart.ui.categories.GenreContract
+import com.raywenderlich.android.foodmart.ui.categories.GenrePresenter
+import com.raywenderlich.android.foodmart.ui.play_song_screen.PlaySongContract
+import com.raywenderlich.android.foodmart.ui.play_song_screen.PlaySongPresenter
+import com.raywenderlich.android.foodmart.ui.songs.SongsContract
+import com.raywenderlich.android.foodmart.ui.songs.SongsPresenter
 
 
 object Injection {
 
-  fun provideFoodRepository(): FoodRepository = FoodRepository
+  fun provideFoodRepository(): SongsRepository = SongsRepository
 
-  fun provideCart(): Cart = Cart
+  fun provideCart(): FavoriteScreen = FavoriteScreen
 
-  fun provideItemsPresenter(itemsView: ItemsContract.View): ItemsContract.Presenter =
-      ItemsPresenter(provideFoodRepository(), provideCart(), itemsView)
+  fun provideItemsPresenter(songsView: SongsContract.View): SongsContract.Presenter =
+      SongsPresenter(provideFoodRepository(), provideCart(), songsView)
 
-    fun provideFoodPresenter(foodView: SongsContract.View): SongsContract.Presenter =
-            SongsPresenter(provideFoodRepository(), provideCart(), foodView)
+    fun provideFoodPresenter(foodView: PlaySongContract.View): PlaySongContract.Presenter =
+            PlaySongPresenter(provideFoodRepository(), provideCart(), foodView)
 
-  fun provideCartPresenter(cartView: CartContract.View): CartContract.Presenter =
-      CartPresenter(provideCart(), cartView)
+  fun provideCartPresenter(favoriteScreenView: FavoriteScreenContract.View): FavoriteScreenContract.Presenter =
+      FavoriteScreenPresenter(provideCart(), favoriteScreenView)
 
-  fun provideCategoriesPresenter(view: CategoriesContract.View): CategoriesContract.Presenter =
-      CategoriesPresenter(provideFoodRepository(), view)
+  fun provideCategoriesPresenter(view: SongsGenreContract.View): SongsGenreContract.Presenter =
+      SongsGenrePresenter(provideFoodRepository(), view)
 
-  fun provideCategoryPresenter(itemsView: CategoryContract.View): CategoryContract.Presenter =
-      CategoryPresenter(provideFoodRepository(), itemsView)
+  fun provideCategoryPresenter(itemsView: GenreContract.View): GenreContract.Presenter =
+      GenrePresenter(provideFoodRepository(), itemsView)
 }

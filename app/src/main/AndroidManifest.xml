@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.raywenderlich.android.foodmart">
+  package="com.example.eduard.songs">
 
 
 
   <application
-    android:name=".app.PlaylistApplication"
+    android:name="com.example.eduard.songs.app.PlaylistApplication"
     android:allowBackup="false"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
@@ -13,7 +13,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity
-      android:name=".ui.SplashActivity"
+      android:name="com.example.eduard.songs.ui.SplashActivity"
       android:theme="@style/SplashTheme">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -22,36 +22,29 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".ui.songs.SongsActivity"
+      android:name="com.example.eduard.songs.ui.songs.SongsActivity"
       android:launchMode="singleTop" />
     <activity
-      android:name=".ui.play_song_screen.FoodActivity"
-      android:parentActivityName=".ui.songs.SongsActivity"
+      android:name="com.example.eduard.songs.ui.play_song_screen.FoodActivity"
+      android:parentActivityName="com.example.eduard.songs.ui.songs.SongsActivity"
       android:theme="@style/DetailTheme">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".ui.songs.SongsActivity" />
+        android:value="com.example.eduard.songs.ui.songs.SongsActivity" />
     </activity>
     <activity
-      android:name=".ui.cart.FavoriteScreenActivity"
+      android:name="com.example.eduard.songs.ui.cart.FavoriteScreenActivity"
       android:launchMode="singleTop"
-      android:parentActivityName=".ui.songs.SongsActivity">
+      android:parentActivityName="com.example.eduard.songs.ui.songs.SongsActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".ui.songs.SongsActivity" />
+        android:value="com.example.eduard.songs.ui.songs.SongsActivity" />
     </activity>
-    <activity
-      android:name=".ui.checkout.CheckoutActivity"
-      android:parentActivityName=".ui.cart.FavoriteScreenActivity">
+        <activity android:name="com.example.eduard.songs.ui.categories.SongsGenreActivity"
+      android:parentActivityName="com.example.eduard.songs.ui.songs.SongsActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".ui.cart.FavoriteScreenActivity" />
-    </activity>
-    <activity android:name=".ui.categories.SongsGenreActivity"
-      android:parentActivityName=".ui.songs.SongsActivity">
-      <meta-data
-        android:name="android.support.PARENT_ACTIVITY"
-        android:value=".ui.songs.SongsActivity" />
+        android:value="com.example.eduard.songs.ui.songs.SongsActivity" />
     </activity>
   </application>
 

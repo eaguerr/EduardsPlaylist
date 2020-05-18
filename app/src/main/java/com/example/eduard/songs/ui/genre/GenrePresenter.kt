@@ -1,15 +1,16 @@
 package com.example.eduard.songs.ui.genre
 
 import com.example.eduard.songs.model.SongsRepository
+import com.example.eduard.songs.ui.genre.GenreContract.Presenter
+import com.example.eduard.songs.ui.genre.GenreContract.View
 
 
-class GenrePresenter(private val repository: SongsRepository, private val itemsView: GenreContract.View)
-  : GenreContract.Presenter {
+class GenrePresenter(private val repository: SongsRepository, private val itemsView: View) : Presenter {
 
-  override fun start() {
-  }
+    override fun start() {
+    }
 
-  override fun loadCategory(category: String) {
-    itemsView.showItems(repository.getFoodsForCategory(category))
-  }
+    override fun loadGenre(genre: String) {
+        itemsView.showSongs(repository.getSongsForGenre(genre))
+    }
 }

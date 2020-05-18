@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/listItemContainer"
+  android:id="@+id/songListContainer"
   android:layout_width="match_parent"
   android:layout_height="@dimen/song_list_height">
 
@@ -18,7 +18,7 @@
     tools:srcCompat="@drawable/avicii_background" />
 
   <TextView
-    android:id="@+id/name"
+    android:id="@+id/songName"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/padding_half"
@@ -33,6 +33,7 @@
     app:layout_constraintTop_toTopOf="parent"
     tools:text="Food Name" />
 
+  <!-- will probably delete idk-->
 <!--  <ImageView-->
 <!--      android:id="@+id/favoriteButton"-->
 <!--      android:layout_width="@dimen/add_button_size"-->

@@ -9,7 +9,7 @@
   app:cardUseCompatPadding="true">
 
   <android.support.constraint.ConstraintLayout
-    android:id="@+id/listItemContainer"
+    android:id="@+id/songListContainer"
     android:layout_width="match_parent"
     android:layout_height="@dimen/song_list_height">
 
@@ -25,7 +25,7 @@
       tools:srcCompat="@drawable/avicii_background" />
 
     <TextView
-      android:id="@+id/foodName"
+      android:id="@+id/songName"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="@dimen/padding_half"

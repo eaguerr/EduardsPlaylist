@@ -11,8 +11,8 @@ data class Song(
         val youtubeLink: String,
         var isMarkedFavorite: Boolean = false) {
     val thumbnail: String
-    get() = "drawable/$image"
+        get() = "drawable/$image"
 
-  val largeImage: String
-    get() = "drawable/$image"
+    val largeImage: String
+        get() = "drawable/$image"
 }

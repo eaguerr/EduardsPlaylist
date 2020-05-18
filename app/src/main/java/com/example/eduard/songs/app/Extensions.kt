@@ -9,7 +9,7 @@ import android.widget.Toast
 
 
 fun Activity.toast(message: String, duration: Int = Toast.LENGTH_SHORT) =
-    Toast.makeText(this, message, duration).show()
+        Toast.makeText(this, message, duration).show()
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View =
-    LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+        LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)

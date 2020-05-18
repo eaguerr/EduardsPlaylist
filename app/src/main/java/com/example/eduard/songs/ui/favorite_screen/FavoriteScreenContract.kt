@@ -7,12 +7,12 @@ import com.example.eduard.songs.ui.base.BaseView
 
 interface FavoriteScreenContract {
 
-  interface View : BaseView<Presenter> {
-    fun showCart(items: List<Song>, notify: Boolean)
-  }
+    interface View : BaseView<Presenter> {
+        fun presentFavoriteScreen(items: List<Song>, notify: Boolean)
+    }
 
-  interface Presenter : BasePresenter {
-    fun loadCart(notify: Boolean)
-    fun removeItem(item: Song)
-  }
+    interface Presenter : BasePresenter {
+        fun loadFavoriteScreen(notify: Boolean)
+        fun removeItem(item: Song)
+    }
 }

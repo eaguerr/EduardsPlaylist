@@ -3,23 +3,23 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <item
-    android:id="@+id/cart_menu_item"
+    android:id="@+id/three_dots_menu"
     android:title="@string/favorite"
     app:actionLayout="@layout/favorite_screen_icon"
     app:showAsAction="always" />
 
   <item
-    android:id="@+id/add_all_menu_item"
+    android:id="@+id/add_all_song_option"
     android:title="@string/add_all_to_favorite_option"
     app:showAsAction="never" />
 
   <item
-    android:id="@+id/remove_all_menu_item"
+    android:id="@+id/remove_all_songs_option"
     android:title="@string/remove_all_from_favorite_option"
     app:showAsAction="never" />
 
   <item
-    android:id="@+id/categories_menu_item"
+    android:id="@+id/genres_option"
     android:title="@string/song_genres"
     app:showAsAction="never" />
 

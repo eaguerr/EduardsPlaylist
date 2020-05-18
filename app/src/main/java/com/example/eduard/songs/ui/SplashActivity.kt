@@ -7,11 +7,11 @@ import com.example.eduard.songs.ui.songs.SongsActivity
 
 class SplashActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    val intent = Intent(this, SongsActivity::class.java)
-    startActivity(intent)
-    finish()
-  }
+        val intent = Intent(this, SongsActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

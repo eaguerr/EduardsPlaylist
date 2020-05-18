@@ -6,31 +6,31 @@ import com.example.eduard.songs.model.SongsRepository
 
 
 class SongsPresenter(private val repository: SongsRepository, private val favoriteScreen: FavoriteScreen, private val songsView: SongsContract.View)
-  : SongsContract.Presenter {
+    : SongsContract.Presenter {
 
-  override fun start() {
-    loadSongs()
-  }
+    override fun start() {
+        loadSongs()
+    }
 
-  private fun loadSongs() {
-    songsView.showItems(repository.getFoods())
-  }
+    private fun loadSongs() {
+        songsView.showItems(repository.getSongs())
+    }
 
-  override fun favoritesListSize() = favoriteScreen.favoritesListSize()
+    override fun favoritesListSize() = favoriteScreen.favoritesListSize()
 
-  override fun addAllSongsToFavorite() {
-    favoriteScreen.addAllSongsToFavorite()
-  }
+    override fun addAllSongsToFavorite() {
+        favoriteScreen.addAllSongsToFavorite()
+    }
 
-  override fun clearAllSongsFromFavorite() {
-    favoriteScreen.clearFavoritesScreen()
-  }
+    override fun clearAllSongsFromFavorite() {
+        favoriteScreen.clearFavoritesScreen()
+    }
 
-  override fun removeItem(item: Song) {
-    favoriteScreen.removeItem(item)
-  }
+    override fun removeItem(item: Song) {
+        favoriteScreen.removeItem(item)
+    }
 
-  override fun addItem(item: Song) {
-    favoriteScreen.addItem(item)
-  }
+    override fun addItem(item: Song) {
+        favoriteScreen.addItem(item)
+    }
 }

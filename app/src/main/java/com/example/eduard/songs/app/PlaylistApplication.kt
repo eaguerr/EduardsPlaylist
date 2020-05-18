@@ -7,17 +7,17 @@ import com.example.eduard.songs.model.SongsRepository
 
 class PlaylistApplication : Application() {
 
-  companion object {
-    private lateinit var instance: PlaylistApplication
+    companion object {
+        private lateinit var instance: PlaylistApplication
 
-    fun getAppContext(): Context = instance.applicationContext
-  }
+        fun getAppContext(): Context = instance.applicationContext
+    }
 
-  override fun onCreate() {
-    instance = this
-    super.onCreate()
+    override fun onCreate() {
+        instance = this
+        super.onCreate()
 
-    // Initialize FoodRepository
-    SongsRepository.loadFoods(this)
-  }
+        // Initialize FoodRepository
+        SongsRepository.loadSongs(this)
+    }
 }

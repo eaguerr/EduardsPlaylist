@@ -14,29 +14,31 @@ import com.example.eduard.songs.R
 import com.example.eduard.songs.app.toast
 import com.example.eduard.songs.model.events.FavoriteScreenEvent
 import com.example.eduard.songs.ui.Injection
+import com.example.eduard.songs.ui.play_song_screen.PlaySongContract.Presenter
+import com.example.eduard.songs.ui.play_song_screen.PlaySongContract.View
 import kotlinx.android.synthetic.main.play_song_screen.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class FoodActivity : AppCompatActivity(), PlaySongContract.View {
+class PlaySongActivity : AppCompatActivity(), View {
 
-    override lateinit var presenter: PlaySongContract.Presenter
+    override lateinit var presenter: Presenter
 
     companion object {
         private const val EXTRA_SONG_ID = "place_id"
 
         fun newIntent(context: Context, foodId: Int): Intent {
-            val intent = Intent(context, FoodActivity::class.java)
+            val intent = Intent(context, PlaySongActivity::class.java)
             intent.putExtra(EXTRA_SONG_ID, foodId)
             return intent
         }
     }
 
     lateinit var mediaPlayer: MediaPlayer
-    private lateinit var runnable:Runnable
+    private lateinit var runnable: Runnable
     private var handler: Handler = Handler()
-    private var pause:Boolean = false
+    private var pause: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.play_song_screen)
@@ -46,14 +48,14 @@ class FoodActivity : AppCompatActivity(), PlaySongContract.View {
 
         presenter = Injection.provideFoodPresenter(this)
 
-        val songs = presenter.getFood(intent.extras.getInt(EXTRA_SONG_ID))
+        val songs = presenter.getSong(intent.extras.getInt(EXTRA_SONG_ID))
 
         songs?.let {
             songImage.setImageResource(resources.getIdentifier(songs.largeImage, null, packageName))
             collapsingToolbar.title = songs.name
             collapsingToolbar.setExpandedTitleColor(ContextCompat.getColor(this, android.R.color.transparent))
-            foodName.text = songs.name
-            foodDescription.text = songs.description
+            songName.text = songs.name
+            lyrics.text = songs.description
 
             spotifyLink.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(songs.link))
@@ -65,7 +67,7 @@ class FoodActivity : AppCompatActivity(), PlaySongContract.View {
                 startActivity(browserIntent)
             }
 
-            fab.setOnClickListener {
+            fabPlay.setOnClickListener {
                 if (songs.id == 1) {
                     mediaPlayer = MediaPlayer.create(applicationContext, R.raw.hold_the_line)
                     mediaPlayer.start()
@@ -120,19 +122,19 @@ class FoodActivity : AppCompatActivity(), PlaySongContract.View {
                 }
                 Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()
                 initializeSeekBar()
-                fab.isEnabled = false
+                fabPlay.isEnabled = false
                 fabStop.isEnabled = true
 
                 mediaPlayer.setOnCompletionListener {
-                    fab.isEnabled = true
+                    fabPlay.isEnabled = true
                     fabStop.isEnabled = false
-                    Toast.makeText(this,"end",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "end", Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
-        fabStop.setOnClickListener{
-            if(mediaPlayer.isPlaying || pause.equals(true)){
+        fabStop.setOnClickListener {
+            if (mediaPlayer.isPlaying || pause.equals(true)) {
                 pause = false
                 seek_bar.progress = 0
                 mediaPlayer.stop()
@@ -140,11 +142,11 @@ class FoodActivity : AppCompatActivity(), PlaySongContract.View {
                 mediaPlayer.release()
                 handler.removeCallbacks(runnable)
 
-                fab.isEnabled = true
+                fabPlay.isEnabled = true
                 fabStop.isEnabled = false
                 tv_pass.text = ""
                 tv_due.text = ""
-                Toast.makeText(this,"media stop",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "media stop", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -193,18 +195,19 @@ class FoodActivity : AppCompatActivity(), PlaySongContract.View {
     @Suppress("UNUSED_PARAMETER")
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onFavoriteScreenEvent(event: FavoriteScreenEvent) {
-        val song = presenter.getFood(intent.extras.getInt(EXTRA_SONG_ID))
+        val song = presenter.getSong(intent.extras.getInt(EXTRA_SONG_ID))
         val isMarkedFavorite = song?.isMarkedFavorite ?: false
         toast(if (isMarkedFavorite) getString(R.string.song_added_to_favorite) else getString(R.string.song_removed_from_favorite))
     }
 }
 
-val MediaPlayer.seconds:Int
+val MediaPlayer.seconds: Int
     get() {
         return this.duration / 1000
     }
+
 // Creating an extension property to get media player current position in seconds
-val MediaPlayer.currentSeconds:Int
+val MediaPlayer.currentSeconds: Int
     get() {
-        return this.currentPosition/1000
+        return this.currentPosition / 1000
     }

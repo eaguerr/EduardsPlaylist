@@ -6,11 +6,11 @@ import com.example.eduard.songs.ui.base.BaseView
 
 
 interface PlaySongContract {
-  interface View : BaseView<Presenter>
+    interface View : BaseView<Presenter>
 
-  interface Presenter : BasePresenter {
-    fun getFood(foodId: Int): Song?
-    fun removeItem(item: Song)
-    fun addItem(item: Song)
-  }
+    interface Presenter : BasePresenter {
+        fun getSong(songId: Int): Song?
+        fun removeSong(item: Song)
+        fun addSong(item: Song)
+    }
 }

@@ -14,47 +14,48 @@ import kotlinx.android.synthetic.main.songs_recyclerview_main_screen.*
 
 class GenreFragment : Fragment(), GenreContract.View {
 
-  override lateinit var presenter: GenreContract.Presenter
-  private val adapter = GenreAdapter(mutableListOf())
+    override lateinit var presenter: GenreContract.Presenter
+    private val adapter = GenreAdapter(mutableListOf())
 
-  companion object {
-    private const val ARG_CATEGORY = "ARG_CATEGORY"
+    companion object {
+        private const val ARG_CATEGORY = "ARG_CATEGORY"
 
-    fun newInstance(category: String): GenreFragment {
-      val args = Bundle()
-      args.putString(ARG_CATEGORY, category)
+        fun newInstance(category: String): GenreFragment {
+            val args = Bundle()
+            args.putString(ARG_CATEGORY, category)
 
-      val fragment = GenreFragment()
-      fragment.arguments = args
-      return fragment
+            val fragment = GenreFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
-  }
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
 
-    presenter = Injection.provideCategoryPresenter(this)
-  }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-    inflater.inflate(R.layout.genres_fragment, container, false)
+        presenter = Injection.provideCategoryPresenter(this)
+    }
 
-  override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+            inflater.inflate(R.layout.genres_fragment, container, false)
 
-    setupRecyclerView()
-  }
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-  private fun setupRecyclerView() {
-    songsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-    songsRecyclerView.adapter = adapter
-  }
+        setupRecyclerView()
+    }
 
-  override fun onResume() {
-    super.onResume()
-    presenter.loadCategory(arguments.getString(ARG_CATEGORY))
-  }
+    private fun setupRecyclerView() {
+        songsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        songsRecyclerView.adapter = adapter
+    }
 
-  override fun showItems(items: List<Song>) {
-    adapter.updateItems(items)
-  }
+    override fun onResume() {
+        super.onResume()
+        presenter.loadGenre(arguments.getString(ARG_CATEGORY))
+    }
+
+    override fun showSongs(items: List<Song>) {
+        adapter.updateItems(items)
+    }
 }

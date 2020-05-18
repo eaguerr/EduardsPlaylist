@@ -25,7 +25,7 @@
       android:name="com.example.eduard.songs.ui.songs.SongsActivity"
       android:launchMode="singleTop" />
     <activity
-      android:name="com.example.eduard.songs.ui.play_song_screen.FoodActivity"
+      android:name="com.example.eduard.songs.ui.play_song_screen.PlaySongActivity"
       android:parentActivityName="com.example.eduard.songs.ui.songs.SongsActivity"
       android:theme="@style/DetailTheme">
       <meta-data

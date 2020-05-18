@@ -14,6 +14,4 @@
   <dimen name="favoriteScreen_song_margin">2dp</dimen>
   <dimen name="favoriteScreen_song_elevation">2dp</dimen>
   <dimen name="empty_state_text_size">24sp</dimen>
-  <dimen name="payment_method_size">100dp</dimen>
-  <dimen name="payment_method_container_height">160dp</dimen>
 </resources>

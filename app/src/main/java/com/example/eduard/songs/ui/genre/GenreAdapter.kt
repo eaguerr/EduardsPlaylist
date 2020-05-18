@@ -1,4 +1,4 @@
-package com.example.eduard.songs.ui.categories
+package com.example.eduard.songs.ui.genre
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -29,7 +29,7 @@ class GenreAdapter(private val items: MutableList<Song>) : RecyclerView.Adapter<
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(item: Song) {
       val context = itemView.context
-      itemView.foodImage.setImageResource(context.resources.getIdentifier(item.thumbnail, null, context.packageName))
+      itemView.songImage.setImageResource(context.resources.getIdentifier(item.thumbnail, null, context.packageName))
       itemView.name.text = item.name
     }
   }

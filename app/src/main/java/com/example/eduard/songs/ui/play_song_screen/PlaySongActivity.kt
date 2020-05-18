@@ -24,11 +24,11 @@ class FoodActivity : AppCompatActivity(), PlaySongContract.View {
     override lateinit var presenter: PlaySongContract.Presenter
 
     companion object {
-        private const val EXTRA_FOOD_ID = "place_id"
+        private const val EXTRA_SONG_ID = "place_id"
 
         fun newIntent(context: Context, foodId: Int): Intent {
             val intent = Intent(context, FoodActivity::class.java)
-            intent.putExtra(EXTRA_FOOD_ID, foodId)
+            intent.putExtra(EXTRA_SONG_ID, foodId)
             return intent
         }
     }
@@ -46,15 +46,16 @@ class FoodActivity : AppCompatActivity(), PlaySongContract.View {
 
         presenter = Injection.provideFoodPresenter(this)
 
-        val songs = presenter.getFood(intent.extras.getInt(EXTRA_FOOD_ID))
+        val songs = presenter.getFood(intent.extras.getInt(EXTRA_SONG_ID))
 
         songs?.let {
-            foodImage.setImageResource(resources.getIdentifier(songs.largeImage, null, packageName))
+            songImage.setImageResource(resources.getIdentifier(songs.largeImage, null, packageName))
             collapsingToolbar.title = songs.name
             collapsingToolbar.setExpandedTitleColor(ContextCompat.getColor(this, android.R.color.transparent))
             foodName.text = songs.name
             foodDescription.text = songs.description
-            moreInfo.setOnClickListener {
+
+            spotifyLink.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(songs.link))
                 startActivity(browserIntent)
             }
@@ -187,13 +188,14 @@ class FoodActivity : AppCompatActivity(), PlaySongContract.View {
         super.onPause()
         EventBus.getDefault().unregister(this)
     }
+//Todo: not a todo, just remember to not remove the onFavoriteScreenEvent or else madness happens
 
     @Suppress("UNUSED_PARAMETER")
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onCartEvent(event: FavoriteScreenEvent) {
-        val food = presenter.getFood(intent.extras.getInt(EXTRA_FOOD_ID))
-        val isInCart = food?.isInCart ?: false
-        toast(if (isInCart) getString(R.string.added_to_cart) else getString(R.string.removed_from_cart))
+    fun onFavoriteScreenEvent(event: FavoriteScreenEvent) {
+        val song = presenter.getFood(intent.extras.getInt(EXTRA_SONG_ID))
+        val isMarkedFavorite = song?.isMarkedFavorite ?: false
+        toast(if (isMarkedFavorite) getString(R.string.song_added_to_favorite) else getString(R.string.song_removed_from_favorite))
     }
 }
 

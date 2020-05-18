@@ -4,14 +4,14 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/listItemContainer"
   android:layout_width="match_parent"
-  android:layout_height="@dimen/list_item_height">
+  android:layout_height="@dimen/song_list_height">
 
   <ImageView
-    android:id="@+id/foodImage"
-    android:layout_width="@dimen/list_item_height"
-    android:layout_height="@dimen/list_item_height"
+    android:id="@+id/songImage"
+    android:layout_width="@dimen/song_list_height"
+    android:layout_height="@dimen/song_list_height"
     android:layout_marginStart="30dp"
-    android:contentDescription="@string/content_description_food_image"
+    android:contentDescription="@string/song_content_description_image"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
@@ -26,19 +26,19 @@
     android:layout_marginStart="@dimen/padding_standard"
     android:layout_marginTop="@dimen/padding_half"
     android:textColor="@android:color/black"
-    android:textSize="@dimen/food_name_text_size"
+    android:textSize="@dimen/song_name_text_size"
     android:textStyle="bold"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/foodImage"
+    app:layout_constraintStart_toEndOf="@+id/songImage"
     app:layout_constraintTop_toTopOf="parent"
     tools:text="Food Name" />
 
   <ImageView
       android:id="@+id/favoriteButton"
-      android:layout_width="@dimen/add_button_size"
-      android:layout_height="@dimen/add_button_size"
+      android:layout_width="@dimen/marios_button_size"
+      android:layout_height="@dimen/marios_button_size"
       android:layout_marginEnd="@dimen/padding_standard"
-      android:contentDescription="@string/add_button"
+      android:contentDescription="@string/its_me_a_button"
       android:scaleType="center"
       android:src="@drawable/ic_favorite_border"
       app:layout_constraintBottom_toBottomOf="parent"

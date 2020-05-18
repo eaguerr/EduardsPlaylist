@@ -12,9 +12,9 @@ interface SongsContract {
   }
 
   interface Presenter : BasePresenter {
-    fun cartSize(): Int
-    fun addAllToCart()
-    fun clearCart()
+    fun favoritesListSize(): Int
+    fun addAllSongsToFavorite()
+    fun clearAllSongsFromFavorite()
     fun removeItem(item: Song)
     fun addItem(item: Song)
   }

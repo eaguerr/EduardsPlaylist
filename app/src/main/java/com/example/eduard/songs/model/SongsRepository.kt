@@ -20,10 +20,8 @@ object SongsRepository {
     songs = gson.fromJson(json, listType)
     songs
         .filter { FavoriteScreen.isInCart(it) }
-        .forEach { it.isInCart = true }
+        .forEach { it.isMarkedFavorite = true }
     songs
-        .filter { Favorites.isFavorite(it) }
-        .forEach { it.isFavorite = true }
   }
 
   fun getFoods() = songs.sortedBy { it.name }

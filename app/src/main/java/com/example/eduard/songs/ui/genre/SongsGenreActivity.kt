@@ -1,4 +1,4 @@
-package com.example.eduard.songs.ui.categories
+package com.example.eduard.songs.ui.genre
 
 import android.content.Context
 import android.content.Intent
@@ -25,7 +25,7 @@ class SongsGenreActivity : AppCompatActivity(), SongsGenreContract.View {
 
     presenter = Injection.provideCategoriesPresenter(this)
 
-    title = getString(R.string.categories)
+    title = getString(R.string.song_genres)
 
     tabLayout.setupWithViewPager(viewPager)
   }

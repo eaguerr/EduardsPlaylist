@@ -8,7 +8,7 @@
   tools:context="com.example.eduard.songs.ui.songs.SongsActivity">
 
   <android.support.v7.widget.RecyclerView
-    android:id="@+id/itemsRecyclerView"
+    android:id="@+id/songsRecyclerView"
     android:layout_width="0dp"
     android:layout_height="0dp"
     app:layout_constraintBottom_toBottomOf="parent"

@@ -1,24 +1,17 @@
 <resources>
   <string name="app_name">Playlist</string>
-  <string name="content_description_food_image">Food Item</string>
-    <string name="more_info">Artist\'s Spotify</string>
-  <string name="add_button">Add button</string>
-  <string name="cart">Cart</string>
-  <string name="cart_icon">Cart Icon</string>
-  <string name="menu_add_all">Add all to cart</string>
-  <string name="menu_remove_all">Remove all from cart</string>
-  <string name="added_to_cart">Added to cart</string>
-  <string name="removed_from_cart">Removed from cart</string>
-  <string name="checkout">CHECKOUT</string>
-  <string name="cart_title">Cart</string>
-  <string name="empty_state_text">No items in the cart.</string>
-  <string name="credit_card">Credit Card</string>
-  <string name="android_pay">Android Pay</string>
-  <string name="checkout_title">Checkout</string>
-  <string name="checkout_from_here">Checkout from here. :]</string>
-  <string name="categories">Categories</string>
-  <string name="close_payment_methods">Close Payment Methods</string>
-  <string name="happy_monster">Happy Monster</string>
+  <string name="song_content_description_image">Song Item</string>
+    <string name="spotifyLink">Artist\'s Spotify</string>
+  <string name="its_me_a_button">Its a button</string>
+  <string name="favorite">Favorite</string>
+  <string name="favorite_icon">Favorite Icon</string>
+  <string name="add_all_to_favorite_option">Mark all to favorite</string>
+  <string name="remove_all_from_favorite_option">Remove all from favorite</string>
+  <string name="song_added_to_favorite">song added to favorite</string>
+  <string name="song_removed_from_favorite">song removed from favorite</string>
+  <string name="favorites_title">Favorite</string>
+  <string name="fav_screen_empty_text">No Songs marked  favorite</string>
+  <string name="song_genres">Songs Genre</string>
     <string name="artist_youtube">Artist\'s Youtube</string>
     <string name="spotify_or_youtube_links">Spotify or Youtube Links</string>
 </resources>

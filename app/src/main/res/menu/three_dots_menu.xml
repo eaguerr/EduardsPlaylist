@@ -4,23 +4,23 @@
 
   <item
     android:id="@+id/cart_menu_item"
-    android:title="@string/cart"
+    android:title="@string/favorite"
     app:actionLayout="@layout/favorite_screen_icon"
     app:showAsAction="always" />
 
   <item
     android:id="@+id/add_all_menu_item"
-    android:title="@string/menu_add_all"
+    android:title="@string/add_all_to_favorite_option"
     app:showAsAction="never" />
 
   <item
     android:id="@+id/remove_all_menu_item"
-    android:title="@string/menu_remove_all"
+    android:title="@string/remove_all_from_favorite_option"
     app:showAsAction="never" />
 
   <item
     android:id="@+id/categories_menu_item"
-    android:title="@string/categories"
+    android:title="@string/song_genres"
     app:showAsAction="never" />
 
 </menu>

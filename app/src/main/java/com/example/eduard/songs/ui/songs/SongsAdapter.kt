@@ -39,14 +39,14 @@ class SongsAdapter(private val items: MutableList<Song>, private val listener: I
     fun bind(item: Song) {
       this.item = item
       val context = itemView.context
-      itemView.foodImage.setImageResource(context.resources.getIdentifier(item.thumbnail, null, context.packageName))
+      itemView.songImage.setImageResource(context.resources.getIdentifier(item.thumbnail, null, context.packageName))
       itemView.name.text = item.name
-      itemView.favoriteButton.setImageResource(if (item.isInCart) R.drawable.ic_favorite else R.drawable.ic_favorite_border)
+      itemView.favoriteButton.setImageResource(if (item.isMarkedFavorite) R.drawable.ic_favorite else R.drawable.ic_favorite_border)
       itemView.favoriteButton.setOnClickListener {
-        if (item.isInCart) {
+        if (item.isMarkedFavorite) {
           listener.removeItem(item, itemView.favoriteButton)
         } else {
-          listener.addItem(item, itemView.foodImage, itemView.favoriteButton)
+          listener.addItem(item, itemView.songImage, itemView.favoriteButton)
         }
       }
     }

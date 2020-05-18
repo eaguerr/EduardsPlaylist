@@ -9,8 +9,7 @@ data class Song(
         val link: String,
         val category: String,
         val youtubeLink: String,
-        var isInCart: Boolean = false,
-        var isFavorite: Boolean = false) {
+        var isMarkedFavorite: Boolean = false) {
     val thumbnail: String
     get() = "drawable/$image"
 

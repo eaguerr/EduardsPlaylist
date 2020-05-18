@@ -13,8 +13,8 @@ import com.example.eduard.songs.R
 import com.example.eduard.songs.model.Song
 import com.example.eduard.songs.model.events.FavoriteScreenEvent
 import com.example.eduard.songs.ui.Injection
-import com.example.eduard.songs.ui.cart.FavoriteScreenActivity
-import com.example.eduard.songs.ui.categories.SongsGenreActivity
+import com.example.eduard.songs.ui.favorite_screen.FavoriteScreenActivity
+import com.example.eduard.songs.ui.genre.SongsGenreActivity
 import kotlinx.android.synthetic.main.songs_recyclerview_main_screen.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -36,11 +36,10 @@ class SongsActivity : AppCompatActivity(), SongsContract.View, SongsAdapter.Item
     presenter = Injection.provideItemsPresenter(this)
 
     setupRecyclerView()
-    setupCartIcon()
+    setupFavoriteScreenIcon()
   }
 
-  private fun setupCartIcon() {
-    // Add an OnGlobalLayoutListener to allow creating cart icon correctly in lifecycle
+  private fun setupFavoriteScreenIcon() {
     itemsRootView.viewTreeObserver.addOnGlobalLayoutListener {
       itemCount = findViewById(R.id.itemCount)
       itemCountCircle = findViewById(R.id.itemCountCircle)
@@ -49,8 +48,8 @@ class SongsActivity : AppCompatActivity(), SongsContract.View, SongsAdapter.Item
   }
 
   private fun setupRecyclerView() {
-    itemsRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-    itemsRecyclerView.adapter = adapter
+    songsRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    songsRecyclerView.adapter = adapter
   }
 
   override fun onStart() {
@@ -74,8 +73,8 @@ class SongsActivity : AppCompatActivity(), SongsContract.View, SongsAdapter.Item
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
       R.id.cart_menu_item -> startActivity(FavoriteScreenActivity.newIntent(this))
-      R.id.add_all_menu_item -> presenter.addAllToCart()
-      R.id.remove_all_menu_item -> presenter.clearCart()
+      R.id.add_all_menu_item -> presenter.addAllSongsToFavorite()
+      R.id.remove_all_menu_item -> presenter.clearAllSongsFromFavorite()
       R.id.categories_menu_item -> showCategories()
     }
     return super.onOptionsItemSelected(item)
@@ -86,7 +85,7 @@ class SongsActivity : AppCompatActivity(), SongsContract.View, SongsAdapter.Item
   }
 
   private fun updateCartIcon() {
-    val cartSize = presenter.cartSize()
+    val cartSize = presenter.favoritesListSize()
     itemCount?.text = "$cartSize"
     itemCountCircle?.visibility = if (cartSize > 0) View.VISIBLE else View.INVISIBLE
   }

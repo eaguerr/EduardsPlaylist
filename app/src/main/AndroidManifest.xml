@@ -33,14 +33,14 @@
         android:value="com.example.eduard.songs.ui.songs.SongsActivity" />
     </activity>
     <activity
-      android:name="com.example.eduard.songs.ui.cart.FavoriteScreenActivity"
+      android:name="com.example.eduard.songs.ui.favorite_screen.FavoriteScreenActivity"
       android:launchMode="singleTop"
       android:parentActivityName="com.example.eduard.songs.ui.songs.SongsActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
         android:value="com.example.eduard.songs.ui.songs.SongsActivity" />
     </activity>
-        <activity android:name="com.example.eduard.songs.ui.categories.SongsGenreActivity"
+        <activity android:name="com.example.eduard.songs.ui.genre.SongsGenreActivity"
       android:parentActivityName="com.example.eduard.songs.ui.songs.SongsActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"

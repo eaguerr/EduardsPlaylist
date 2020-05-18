@@ -1,4 +1,4 @@
-package com.example.eduard.songs.ui.cart
+package com.example.eduard.songs.ui.favorite_screen
 
 import android.content.Context
 import android.content.Intent
@@ -31,7 +31,7 @@ class FavoriteScreenActivity : AppCompatActivity(), FavoriteScreenContract.View,
 
     presenter = Injection.provideCartPresenter(this)
 
-    title = getString(R.string.cart_title)
+    title = getString(R.string.favorites_title)
 
     setupRecyclerView()
   }

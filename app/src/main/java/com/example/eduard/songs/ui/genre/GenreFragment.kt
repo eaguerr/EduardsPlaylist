@@ -1,4 +1,4 @@
-package com.example.eduard.songs.ui.categories
+package com.example.eduard.songs.ui.genre
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -45,8 +45,8 @@ class GenreFragment : Fragment(), GenreContract.View {
   }
 
   private fun setupRecyclerView() {
-    itemsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-    itemsRecyclerView.adapter = adapter
+    songsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+    songsRecyclerView.adapter = adapter
   }
 
   override fun onResume() {

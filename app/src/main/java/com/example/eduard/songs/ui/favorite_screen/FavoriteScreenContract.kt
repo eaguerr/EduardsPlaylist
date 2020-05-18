@@ -1,17 +1,18 @@
-package com.example.eduard.songs.ui.categories
+package com.example.eduard.songs.ui.favorite_screen
 
 import com.example.eduard.songs.model.Song
 import com.example.eduard.songs.ui.base.BasePresenter
 import com.example.eduard.songs.ui.base.BaseView
 
 
-interface GenreContract {
+interface FavoriteScreenContract {
 
   interface View : BaseView<Presenter> {
-    fun showItems(items: List<Song>)
+    fun showCart(items: List<Song>, notify: Boolean)
   }
 
   interface Presenter : BasePresenter {
-    fun loadCategory(category: String)
+    fun loadCart(notify: Boolean)
+    fun removeItem(item: Song)
   }
 }

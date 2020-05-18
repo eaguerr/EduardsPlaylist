@@ -1,4 +1,4 @@
-package com.example.eduard.songs.ui.categories
+package com.example.eduard.songs.ui.genre
 
 import com.example.eduard.songs.model.SongsRepository
 

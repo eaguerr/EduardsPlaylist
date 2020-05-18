@@ -2,12 +2,12 @@ package com.example.eduard.songs.ui
 
 import com.example.eduard.songs.model.FavoriteScreen
 import com.example.eduard.songs.model.SongsRepository
-import com.example.eduard.songs.ui.cart.FavoriteScreenContract
-import com.example.eduard.songs.ui.cart.FavoriteScreenPresenter
-import com.example.eduard.songs.ui.categories.SongsGenreContract
-import com.example.eduard.songs.ui.categories.SongsGenrePresenter
-import com.example.eduard.songs.ui.categories.GenreContract
-import com.example.eduard.songs.ui.categories.GenrePresenter
+import com.example.eduard.songs.ui.favorite_screen.FavoriteScreenContract
+import com.example.eduard.songs.ui.favorite_screen.FavoriteScreenPresenter
+import com.example.eduard.songs.ui.genre.SongsGenreContract
+import com.example.eduard.songs.ui.genre.SongsGenrePresenter
+import com.example.eduard.songs.ui.genre.GenreContract
+import com.example.eduard.songs.ui.genre.GenrePresenter
 import com.example.eduard.songs.ui.play_song_screen.PlaySongContract
 import com.example.eduard.songs.ui.play_song_screen.PlaySongPresenter
 import com.example.eduard.songs.ui.songs.SongsContract

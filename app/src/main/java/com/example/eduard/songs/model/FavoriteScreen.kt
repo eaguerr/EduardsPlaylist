@@ -11,7 +11,7 @@ import org.greenrobot.eventbus.EventBus
 
 object FavoriteScreen {
 
-  private val KEY_CART = "KEY_CART"
+  private val FAVORITES_KEY = "FAVORITES_KEY"
   private val gson = Gson()
 
   private var itemIds: MutableList<Int>? = null
@@ -23,19 +23,19 @@ object FavoriteScreen {
   fun addItem(item: Song) {
     val itemIds = getCartItemIds()
     itemIds?.let {
-      item.isInCart = true
+      item.isMarkedFavorite = true
       itemIds.add(item.id)
-      saveCart(KEY_CART, itemIds)
+      saveCart(FAVORITES_KEY, itemIds)
     }
   }
 
   fun removeItem(item: Song) {
     val itemIds = getCartItemIds()
     itemIds?.let {
-      item.isInCart = false
+      item.isMarkedFavorite = false
       val position = itemIds.indexOf(item.id)
       itemIds.remove(item.id)
-      saveCart(KEY_CART, itemIds)
+      saveCart(FAVORITES_KEY, itemIds)
       EventBus.getDefault().post(DeleteSongFromFavoriteScreenEvent(position))
     }
   }
@@ -48,7 +48,7 @@ object FavoriteScreen {
 
   private fun getCartItemIds(): MutableList<Int>? {
     if (itemIds == null) {
-      val json = sharedPrefs().getString(KEY_CART, "")
+      val json = sharedPrefs().getString(FAVORITES_KEY, "")
       val type = object : TypeToken<MutableList<Int>>() {}.type
       itemIds = gson.fromJson<MutableList<Int>>(json, type) ?: return mutableListOf()
     }
@@ -69,7 +69,7 @@ object FavoriteScreen {
     return items
   }
 
-  fun cartSize(): Int {
+  fun favoritesListSize(): Int {
     val itemIds = getCartItemIds()
     itemIds?.let {
       return itemIds.size
@@ -77,25 +77,25 @@ object FavoriteScreen {
     return 0
   }
 
-  fun addAllToCart() {
+  fun addAllSongsToFavorite() {
     val itemIds = getCartItemIds()
     itemIds?.let {
       val foods = SongsRepository.getFoods()
       foods.forEach { food ->
-        if (!food.isInCart) {
+        if (!food.isMarkedFavorite) {
           addItem(food)
         }
       }
     }
   }
 
-  fun clearCart() {
+  fun clearFavoritesScreen() {
     val itemIds = getCartItemIds()
     itemIds?.let {
       itemIds.clear()
       val foods = SongsRepository.getFoods()
-      foods.forEach { it.isInCart = false }
-      saveCart(KEY_CART, itemIds)
+      foods.forEach { it.isMarkedFavorite = false }
+      saveCart(FAVORITES_KEY, itemIds)
     }
   }
 

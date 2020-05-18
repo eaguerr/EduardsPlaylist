@@ -1,4 +1,4 @@
-package com.example.eduard.songs.ui.cart
+package com.example.eduard.songs.ui.favorite_screen
 
 import com.example.eduard.songs.model.FavoriteScreen
 import com.example.eduard.songs.model.Song

@@ -1,4 +1,4 @@
-package com.example.eduard.songs.ui.cart
+package com.example.eduard.songs.ui.favorite_screen
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -32,10 +32,10 @@ class FavoriteScreenAdapter(private val items: MutableList<Song>, private val li
     fun bind(item: Song) {
       this.item = item
       val context = itemView.context
-      itemView.foodImage.setImageResource(context.resources.getIdentifier(item.thumbnail, null, context.packageName))
+      itemView.songImage.setImageResource(context.resources.getIdentifier(item.thumbnail, null, context.packageName))
       itemView.foodName.text = item.name
       itemView.deleteButton.setOnClickListener {
-        if (item.isInCart) {
+        if (item.isMarkedFavorite) {
           listener.removeItem(item)
         }
       }

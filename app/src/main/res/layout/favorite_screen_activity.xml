@@ -3,14 +3,14 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="com.example.eduard.songs.ui.cart.FavoriteScreenActivity">
+  tools:context="com.example.eduard.songs.ui.favorite_screen.FavoriteScreenActivity">
 
   <TextView
     android:id="@+id/emptyLabel"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:text="@string/empty_state_text"
+    android:text="@string/fav_screen_empty_text"
     android:textSize="@dimen/empty_state_text_size"
     android:visibility="invisible"
     tools:visibility="visible" />
